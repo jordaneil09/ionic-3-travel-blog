@@ -1,0 +1,48 @@
+<!--
+  Generated template for the PostPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-title>{{ post?.Title }}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="commentToPost()">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content no-padding>
+  <img [src]="post?.Embedded_featured_medias[0]?.source_url" />
+  <div id="blog-container">
+  
+    <h1 text-center color="primary">{{ post?.Title }}</h1>
+
+    <div id="author-content" margin-bottom>
+        <p class='green-content'>Posted on <a [href]="post?.Link">{{ post?.Date | date:'MMMM dd, yyyy' }}</a> by <a [href]="post?.Embedded_authors[0]?.url">{{ post?.Embedded_authors[0]?.name }}</a><p>
+    </div>
+      
+    <div id="post-content" class='content' [innerHtml]="post?.Content" text-justify></div>
+  </div>
+
+  <ion-row *ngIf="!commentsReady">
+    <ion-spinner text-center></ion-spinner>
+  </ion-row>
+  
+  <div id="comments-container" *ngIf="commentsReady">
+    <h1>{{ post?.Embedded_comments?.length }} thought{{ post?.Embedded_comments?.length > 1 ? 's' : '' }} on "{{ post?.Title }}"</h1>
+    <div id="comments">
+      <comment-block *ngFor="let comment of post?.Embedded_comments" [comment]="comment" (replyToCommentEmitter)="replyToUserComment($event)" 
+        (viewCommentChildrenEmitter)="viewCommentChildren($event)"></comment-block>
+    </div>
+  </div>
+  <ion-fab bottom right *ngIf="showScrollToTop">
+    <button ion-fab mini (click)="scrollToTop()"><ion-icon name="arrow-up"></ion-icon></button>
+  </ion-fab>
+</ion-content>

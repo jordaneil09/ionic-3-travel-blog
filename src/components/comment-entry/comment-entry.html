@@ -1,0 +1,34 @@
+<!-- Generated template for the CommentEntryComponent component -->
+<ion-content padding>
+
+  <h2 class="green-content" text-center>{{ header }}</h2>
+
+  <div margin-vertical>
+    <ion-item>
+      <ion-label color="content" stacked>Comment</ion-label>
+      <ion-textarea [(ngModel)]="content" clearInput></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="content" stacked>Name *</ion-label>
+      <ion-input [(ngModel)]="author_name" clearInput></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="content" stacked>Email *</ion-label>
+      <ion-input [(ngModel)]="author_email" clearInput></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="content" stacked>Website</ion-label>
+      <ion-input [(ngModel)]="author_url" clearInput></ion-input>
+    </ion-item>
+  </div>
+  
+  
+  <ion-row>
+    <button ion-button color="secondary" (click)="close()"> Cancel </button>
+    <button ion-button (click)="submit()"> Submit </button>
+  </ion-row>
+  
+</ion-content>

@@ -1,0 +1,24 @@
+<!-- Generated template for the CommentBlockComponent component -->
+<ion-item>
+    <ion-avatar item-left>
+      <img [src]="comment.author_avatar_urls['96']">
+    </ion-avatar>
+
+    <h2>{{ comment.author_name }} says:</h2>
+    
+    <p class='highlight-content'>{{ comment.date | date:'MMMM dd, yyyy' }} at {{ comment.date | date:'h:mm a' }} </p>
+</ion-item>
+
+<div id="comment" [innerHtml]="comment.content.rendered"></div>
+
+<button id="reply-btn" class="reply-buttons" ion-button color="secondary" clear (click)="replyToComment()">
+  Reply
+</button>
+
+<button ion-button id="reply-children-btn" class="reply-buttons" color="secondary" clear (click)="viewReplies()" *ngIf="comment._links?.children?.length > 0 &amp;&amp; !parentBlock">
+  View {{ comment._links?.children?.length }} Repl{{ comment._links?.children?.length > 1 ? 'ies' : 'y'}}
+</button>
+
+
+
+

@@ -1,0 +1,14 @@
+comment-entry {
+    ion-item {
+        padding-left: 0px !important;
+    }
+
+    ion-row {
+        float: right;
+        padding: 10px;
+
+        button:nth-of-type(1) {
+            margin-right: 10px;
+        }
+    }
+}

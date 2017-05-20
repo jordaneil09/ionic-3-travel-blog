@@ -1,0 +1,33 @@
+blog-post-item {
+    ion-item {
+        h2 {
+            color: #333 !important;
+        }
+    }
+
+    ion-card {
+        margin-bottom: 20px !important;
+    }
+
+    #post-excerpt {
+        margin-bottom: 10px;
+    }
+
+    #post-excerpt p{
+        color: #0e7886;
+        line-height: 1.4;
+        font-size: 15px;
+    }
+
+    #post-read-more-container {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+
+    .card-title-md,
+    .card-title-ios,
+    .card-title-wp {
+        font-weight: 700;
+    }
+}

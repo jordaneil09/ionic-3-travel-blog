@@ -1,0 +1,40 @@
+page-post {
+    padding-bottom: 100px !important;
+
+    ion-card-header {
+        font-weight: 700;
+        font-size: 20px !important;
+        padding-bottom: 0px !important;
+    }
+
+    ion-content h1 {
+        color: #ff757c;
+        font-weight: 700;
+    }
+
+    #blog-container,
+    #comments-container {
+        padding: 0 20px;
+    }
+
+    #post-content p{
+        color: #0e7886;
+        line-height: 1.4em;
+        font-size: 16px;
+    }
+
+    #author-content a,
+    #post-content a{
+        color: #15bdb1;
+    }
+
+    #blog-container {
+        margin-bottom: 40px !important;
+    }
+
+    ion-spinner {
+        margin: 0 auto;
+    }
+}
+
+

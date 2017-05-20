@@ -1,0 +1,30 @@
+page-home {
+    #home-screen-cover {
+        background-position: center 10%;
+        background-repeat: no-repeat;
+        background-size: 90%;
+        background-color: #333;
+        height: 100%;
+        width: 100%;
+        padding-top: 40px;
+    }
+
+    #start-btn {
+        margin-top: 20px;
+    }
+
+    #home-logo {
+        width: 80%;
+        max-width: 512px;
+        max-height: 612px;
+    }
+
+    #motto-text {
+        opacity: 0;
+        color: #0e7886;
+    }
+}
+
+
+
+

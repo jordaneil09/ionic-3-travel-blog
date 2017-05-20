@@ -1,0 +1,25 @@
+<ion-card>
+  <ion-item>
+    <ion-avatar item-left>
+      <img [src]="post.Embedded_authors[0].avatar_urls['96']">
+    </ion-avatar>
+    <h2>{{ post.Embedded_authors[0].name }}</h2>
+    <p>{{ post.Date | date:'MMMM dd, yyyy' }}</p>
+  </ion-item>
+
+  <img [src]="post.Embedded_featured_medias[0].source_url"/>
+  <ion-card-content>
+    <ion-card-title color="primary">
+      {{post.Title}}
+    </ion-card-title>
+
+    <div id="post-excerpt" [innerHtml]="post.Excerpt" text-justify></div>
+
+    <div id="post-read-more-container">
+      <button ion-button icon-left id="post-read-more-btn" color="primary" (click)="readBlogPost()"> 
+        <ion-icon name="eye"></ion-icon>
+        Read More </button>
+    </div>
+    
+  </ion-card-content>
+</ion-card>

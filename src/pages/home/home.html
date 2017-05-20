@@ -1,0 +1,31 @@
+<!--
+  Generated template for the HomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!--
+<ion-header>
+
+  
+  <ion-navbar color="primary">
+    <ion-title>OMO TRAVEL</ion-title>
+  </ion-navbar>
+
+</ion-header>
+-->
+<ion-content no-padding>
+  
+  <div id="home-screen-cover" text-center padding>
+    <img id="home-logo" src="assets/images/logo.png" alt="Logo" [@logoTrigger]="logoTriggerState"/>
+
+    <h2 id="motto-text" [@mottoTrigger]="mottoTriggerState">Places you must see </h2>
+
+    <button id="start-btn" ion-button (click)="startApp()" large icon-left round strong [@btnTrigger]="buttonTriggerState"> 
+          <ion-icon ios="ios-paper-plane" md="md-paper-plane"></ion-icon>
+          Take a Tour 
+        </button>
+
+  </div>
+  
+</ion-content>

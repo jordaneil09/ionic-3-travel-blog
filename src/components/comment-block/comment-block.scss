@@ -1,0 +1,20 @@
+comment-block {
+    ion-item {
+        padding-left: 0px !important;
+    }
+
+    #comment {
+        white-space: wrap !important;
+        margin-top: 10px;
+    }
+    #comment p{
+        color: #0e7886;
+        line-height: 1.4 !important;
+        margin-bottom: 0px !important;
+    }
+
+    .reply-buttons {
+        float: right;
+        text-transform: none !important;
+    }
+}
