@@ -109,7 +109,7 @@ export class ListPage {
   }
 
   ionViewWillUnload(): void {
-    if(this.postCollectionSub)
-      this.postCollectionSub.unsubscribe();
+    //if(this.postCollectionSub)
+    //  this.postCollectionSub.unsubscribe();
   }
 }
