@@ -69,7 +69,6 @@ export class ListPage {
   postsResponseHandler(res:CollectionResponse, loading?:Loading): void {
     this.lastCollectionResponsePagination = res.pagination;
     res.data.map((item) => {
-      console.log(item);
       this.blogPosts.push(ProxyPost.fromJson(item));
     });
 

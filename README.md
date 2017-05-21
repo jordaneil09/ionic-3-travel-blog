@@ -7,10 +7,9 @@ git clone https://github.com/jordaneil09/ionic-3-travel-blog
 To start with, make sure you have latest Node.js installed
  > https://nodejs.org/en/
 
-Install latest Npm, Cordova and Ionic 
+Install latest ordova and Ionic 
 ```bash
-$ sudo npm install -g npm cordova ionic
-$ npm install
+$ sudo npm install -g cordova ionic
 ```
 Install dependencies
 ```bash
