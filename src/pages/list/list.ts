@@ -1,6 +1,6 @@
 import { Component, ViewChild, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Loading, AlertController, Content } from 'ionic-angular';
-import { ProxyPost } from '../../model/proxy.post.interface';
+import { ProxyPost, MOCK_POSTS } from '../../model/proxy.post.data';
 
 import { WpService, CollectionResponse, WpPagination } from 'ngx-wordpress';
 
@@ -30,6 +30,9 @@ export class ListPage {
       this.blogPosts = [];
   }
 
+  /**
+   * Calls WP REST API to get first available page(max of 5 posts) of blog posts
+   */
   ionViewWillLoad() {
     let loading = this.loadingCtrl.create({
       content: "Retrieving posts. Please wait..."
@@ -59,9 +62,14 @@ export class ListPage {
     });
   }
 
-  postsResponseHandler(res:CollectionResponse, loading?:Loading) {
+  /**
+   * Response handler for getting POSTS from WP REST API 
+   * Receives post collection and loading dialog
+   */
+  postsResponseHandler(res:CollectionResponse, loading?:Loading): void {
     this.lastCollectionResponsePagination = res.pagination;
     res.data.map((item) => {
+      console.log(item);
       this.blogPosts.push(ProxyPost.fromJson(item));
     });
 
@@ -71,7 +79,11 @@ export class ListPage {
     this.retrievingPosts = false;
   }
 
-  postsFaultHandler(err:any, loading?:Loading) {
+  /**
+   * Fault handler for getting POSTS from WP REST API 
+   * Receives error object and loading dialog
+   */
+  postsFaultHandler(err:any, loading?:Loading): void {
     if(loading)
       loading.dismiss();
 
@@ -92,6 +104,10 @@ export class ListPage {
     this.retrievingPosts = false;
   }
 
+  /**
+   * Calls WP REST API to get more available page(max of 5 posts) of blog posts
+   * Doesn't continue if no next pages are available
+   */
   getNextPostPage(): void {
     
     if(this.postCollectionSub && this.lastCollectionResponsePagination.hasMore) {
@@ -104,12 +120,23 @@ export class ListPage {
     }
   }
 
-  postItemClicked(post:ProxyPost) {
+  /**
+   * Opens a blog posts when READ MORE is clicked
+   * Accepts the proxy object of blog post
+   */
+  postItemClicked(post:ProxyPost): void {
     this.navCtrl.push('PostPage', {post: post});
   }
 
   ionViewWillUnload(): void {
     //if(this.postCollectionSub)
     //  this.postCollectionSub.unsubscribe();
+  }
+
+  /********* UNIT TESTING ******************** */
+  unitTestingGetPosts(): void {
+    MOCK_POSTS.map((item) => {
+      this.blogPosts.push(ProxyPost.fromJson(item));
+    });
   }
 }

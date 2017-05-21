@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ProxyPost } from '../../model/proxy.post.interface';
+import { ProxyPost } from '../../model/proxy.post.data';
 
 /**
  * Generated class for the BlogPostItemComponent component.
@@ -15,6 +15,10 @@ export class BlogPostItemComponent {
   @Input() post:ProxyPost;
   @Output() postItemClicked:EventEmitter<ProxyPost> = new EventEmitter<ProxyPost>();
 
+
+  /**
+   * Dispatches an event to open up blog posts
+   */
   readBlogPost(): void{
     this.postItemClicked.emit(this.post);
   }

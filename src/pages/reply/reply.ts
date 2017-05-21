@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { CommentAuthor } from '../../model/comment.author.interface';
 import { WpService } from 'ngx-wordpress';
 import { CommentEntryComponent } from '../../components/comment-entry/comment-entry';
@@ -22,9 +22,13 @@ export class ReplyPage {
   commentsCollectionSub: any;
   commentModelSub: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private wp: WpService, private modalCtrl: ModalController, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private wp: WpService, private modalCtrl: ModalController, private alertCtrl: AlertController,
+    private toastCtrl: ToastController) {
   }
 
+  /**
+   * Gets the parent comment that will receive the reply. Returns to List page if empty.
+   */
   ionViewWillLoad(): void {
     this.comment = this.navParams.get('comment');
 
@@ -36,6 +40,9 @@ export class ReplyPage {
     }
   }
 
+  /**
+   * Calls the WP REST API and gets all the available replies of the parent Comment
+   */
   getComments(): void {
     this.commentsCollectionSub = this.wp.collection().comments();
     this.commentsCollectionSub.get(
@@ -50,7 +57,7 @@ export class ReplyPage {
 
               let alert = this.alertCtrl.create({
                 title: 'Ooops!',
-                message: 'Looks like the replies are still waiting for moderation.',
+                message: 'Looks like the replies are still under moderation.',
                 buttons: ['OK']
               });
 
@@ -64,19 +71,30 @@ export class ReplyPage {
           err => this.commentsResponseHandler
         );
   }
+
+  /**
+   * Fault handler for getting replies
+   */
   commentsResponseHandler(): void {
     //do nothing atm
   }
 
+  /**
+   * Fault handler for getting replies
+   */
   replyToUserComment(comment: CommentAuthor): void {
     let commentModal = this.modalCtrl.create(CommentEntryComponent, {comment: comment});
     commentModal.onDidDismiss(data => {
-      this.addCommentToRest(data);
+      this.addReplyToComment(data);
     });
     commentModal.present();
   }
 
-  addCommentToRest(comment: any): void {
+  /**
+   * Handler that receives validated comment. Sends a command to WP REST API to add a comment to parent comment
+   * @params - Validated comment body object
+   */
+  addReplyToComment(comment: any): void {
     if(comment) {
       this.commentModelSub = this.wp.model().comments();
       this.commentModelSub.add({
@@ -88,10 +106,25 @@ export class ReplyPage {
         parent: this.comment.id
       })
       .subscribe(
-        //data => this.commentResultHandler(data.error != null ? data.error.json().message : "Comment sent successfully."),
-        //err => this.commentsResponseHandler
+        data => this.commentResultHandler(data.error != null ? data.error.json().message : "Comment sent successfully."),
+        err => this.commentsResponseHandler
       );
     }
+  }
+
+  /**
+   * Response handler for adding a comment to a parent Comment
+   * @params -  message to display to the toast
+   */
+  commentResultHandler(message: string): void {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 5000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+
+    toast.present();
   }
 
 }

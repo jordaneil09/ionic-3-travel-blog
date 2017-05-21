@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { PostPage } from './post';
 import { ComponentsModule } from '../../components/components.module';
+import { PipeModule } from '../../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { ComponentsModule } from '../../components/components.module';
   ],
   imports: [
     IonicPageModule.forChild(PostPage),
-    ComponentsModule
+    ComponentsModule,
+    PipeModule
   ],
   exports: [
     PostPage

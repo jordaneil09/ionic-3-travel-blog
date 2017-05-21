@@ -54,10 +54,16 @@ export class HomePage {
   constructor(private navCtrl: NavController, private navParams: NavParams) {
   }
 
+  /**
+   * Goes to List Page on Take Tour click
+   */
   startApp(): void {
     this.navCtrl.setRoot('ListPage');
   }
 
+  /**
+   * Starts animation of components (logo, button and motto)
+   */
   ionViewDidEnter(): void {
     setTimeout(() => {
       this.logoTriggerState = "slideDown";

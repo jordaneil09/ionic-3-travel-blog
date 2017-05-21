@@ -16,7 +16,7 @@
 <ion-content no-padding>
   <blog-post-item *ngFor="let post of blogPosts" [post]="post" (postItemClicked)="postItemClicked($event)"></blog-post-item>
 
-  <ion-item *ngIf="retrievingPosts" text-center>
+  <ion-item *ngIf="retrievingPosts &amp;&amp; blogPosts?.length > 0" text-center>
     <ion-spinner name="dots"></ion-spinner>
   </ion-item>
 </ion-content>

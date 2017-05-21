@@ -34,6 +34,11 @@ export class CommentEntryComponent {
       this.header = `We appreciate a comment so share your thoughts and let us know what you think about "${ this.navParams.get('title') }":`;
   }
 
+  /**
+   * Validates a comment entry before calling the WP API
+   * Shows an error message if:
+   * No comment added, invalid email format and empty name
+   */
   submit(): void {
     
     //content
@@ -64,10 +69,12 @@ export class CommentEntryComponent {
       parent: this.comment ? this.comment.id : 0
     }
 
-    console.log(body);
     this.viewCtrl.dismiss(body);
   }
 
+  /**
+   * Handles error message and display it as toast
+   */
   showInvalidError(msg: string): void {
     let toast = this.toastCtrl.create({
       message: msg,

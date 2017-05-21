@@ -22,11 +22,16 @@ export class CommentBlockComponent {
 
   }
 
+  /**
+   * Dispatches an event to reply to a comment
+   */
   replyToComment(): void {
-    console.log(this.parentBlock);
-    //this.replyToCommentEmitter.emit(this.comment);
+    this.replyToCommentEmitter.emit(this.comment);
   }
 
+  /**
+   * Dispatches an event to view the replies of a comment
+   */
   viewReplies(): void {
     this.viewCommentChildrenEmitter.emit(this.comment);
   }

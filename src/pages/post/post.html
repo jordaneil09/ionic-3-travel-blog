@@ -31,10 +31,18 @@
     <div id="post-content" class='content' [innerHtml]="post?.Content" text-justify></div>
   </div>
 
+  <ion-row class="term-container" *ngIf="post?.Embedded_terms_category != null &amp;&amp; post?.Embedded_terms_category.length > 0" padding-horizontal>
+    <p>Posted in <span class="terms">{{ post?.Embedded_terms_category | termTaxonomyDisplayPipe }}</span></p>
+  </ion-row>
+
+  <ion-row class="term-container" *ngIf="post?.Embedded_terms_tag != null &amp;&amp; post?.Embedded_terms_tag.length > 0" padding-horizontal>
+    <p>Tagged <span class="terms">{{ post?.Embedded_terms_tag | termTaxonomyDisplayPipe }}</span></p>
+  </ion-row>
+
   <ion-row *ngIf="!commentsReady">
     <ion-spinner text-center></ion-spinner>
   </ion-row>
-  
+
   <div id="comments-container" *ngIf="commentsReady">
     <h1>{{ post?.Embedded_comments?.length }} thought{{ post?.Embedded_comments?.length > 1 ? 's' : '' }} on "{{ post?.Title }}"</h1>
     <div id="comments">
