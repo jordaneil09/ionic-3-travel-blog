@@ -4,10 +4,10 @@ Quickstart
 Clone this repository:
 git clone https://github.com/jordaneil09/ionic-3-travel-blog
 
-To start with make sure you have latest Node.js installed
+To start with, make sure you have latest Node.js installed
  > https://nodejs.org/en/
 
-Install Npm 4.6.1, Cordova 7.0.1 and Ionic CLI 3.0.0
+Install latest Npm, Cordova and Ionic 
 ```bash
 $ sudo npm install -g npm cordova ionic
 $ npm install
